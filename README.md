@@ -25,8 +25,8 @@ You also can specify path to the localization files as the argument:
 2. Add refrence to the game's `Assembly-CSharp.dll`. *It requires to be able to use the JSONObject class*
 3. ???
 4. Profit =)
----
 
+#### Troubles?
 If you have any issues with it - open one [**here**](https://github.com/Vlad-00003/LocalisationValidator/issues/new)
 
 ---
@@ -50,8 +50,6 @@ If you have any issues with it - open one [**here**](https://github.com/Vlad-000
   - ПКМ на программе -> Создать ярлык
   - Откройте его свойства
   - Добавьте ваш путь в конец поля **Объект**
----
-Если у вас возникли какие-то трудности с программой или её компиляцией - вы можете [**открыть обращение**](https://github.com/Vlad-00003/LocalisationValidator/issues/new)
 
 ---
 
@@ -60,3 +58,6 @@ If you have any issues with it - open one [**here**](https://github.com/Vlad-000
 2. В проекте добавьте ссылку на `Assembly-CSharp.dll` игры. *Она нужна для использования класса JSONObject*
 3. ???
 4. Profit =)
+
+#### Проблемы?
+Если у вас возникли какие-то трудности с программой или её компиляцией - вы можете [**открыть обращение**](https://github.com/Vlad-00003/LocalisationValidator/issues/new)
