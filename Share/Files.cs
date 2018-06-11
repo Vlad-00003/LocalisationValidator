@@ -8,15 +8,15 @@ namespace Share
     class Localization
     {
         public LocalizationFile Original;
-        public List<LocalizationFile> Available;
+        public List<LocalizationFile> Available = new List<LocalizationFile>();
         private readonly string _path;
         private readonly ILogger _logger;
+        public bool Initilized = false;
         public Localization(string path, ILogger logger)
         {
             _path = path;
             _logger = logger;
         }
-
         public void Init()
         {
             if (string.IsNullOrEmpty(_path))
@@ -54,7 +54,6 @@ namespace Share
             { 
                 throw GenerateException("Original file isn't ready. Can't procced",ex);
             }
-            Available = new List<LocalizationFile>();
             foreach (var file in files)
             {
                 LocalizationFile lfile;
@@ -62,14 +61,14 @@ namespace Share
                 {
                     lfile = new LocalizationFile(file, _logger);
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    _logger.PrintError("Can't initilize file \"{0}\". It won't be used.",file);
+                    _logger.PrintError("Can't initilize file \"{0}\". It won't be used. Error: {1}",file,ex.FriendlyException());
                     continue;
                 }
                 Available.Add(lfile);
             }
-            return;
+            Initilized = true;
         }
     }
 
@@ -80,6 +79,11 @@ namespace Share
         private JSONObject _text;
         public Dictionary<string, string> Entries;
         private readonly ILogger _logger;
+
+        public override string ToString()
+        {
+            return $"{_fullpath} (lang:{Entries["LANG_NAME"]}";
+        }
 
         public LocalizationFile(string fullpath,ILogger logger)
         {
