@@ -9,6 +9,7 @@
     <Import_RootNamespace>Share</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Comparator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Files.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ILogger.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utilities.cs" />

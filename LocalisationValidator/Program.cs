@@ -2,6 +2,7 @@
 using System.IO;
 using Share;
 using static Share.Utilities;
+using static Share.Comparator;
 
 namespace LocalisationValidator
 {

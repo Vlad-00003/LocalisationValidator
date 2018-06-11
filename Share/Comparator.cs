@@ -1,8 +1,7 @@
-﻿using Share;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace LocalisationValidator
+namespace Share
 {
     internal static class Comparator
     {
@@ -21,7 +20,7 @@ namespace LocalisationValidator
         /// <returns></returns>
         public static bool FillKeys(this Dictionary<string, string> target, Dictionary<string, string> orig,ILogger logger)
         {
-            if (target.Equal(orig))
+            if (Equal(target, orig))
             {
                 return true;
             }
