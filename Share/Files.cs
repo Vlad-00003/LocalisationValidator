@@ -105,7 +105,7 @@ namespace Share
             catch (Exception ex)
             {
                 _logger.PrintError(ex.Message);
-                if (_logger.CheckResponse("Do you want to override this file with english lines?)"))
+                if (_logger.CheckResponse("Do you want to override this file with english lines?"))
                 {
                     Entries = new Dictionary<string, string>();
                 }

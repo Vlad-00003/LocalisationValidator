@@ -13,7 +13,7 @@ namespace Share
         {
             if (e == null)
                 return string.Empty;
-            return $"\"Exception: {e.GetType()}\"\n\tMessage: {e.Message}\n\tStacktrace: {e.StackTrace}\n" +
+            return $"\"Exception: {e.GetType()}\"\n\tMessage: {e.Message}\n\tStacktrace: {e.StackTrace}\nInner Exception:\n" +
                    FriendlyException(e.InnerException);
         }
         /// <summary>

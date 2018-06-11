@@ -46,24 +46,10 @@ namespace LocalisationValidator
 
         private static bool GetPath()
         {
-            ConsoleKey response;
-            do
-            {
-                Logger.Inst.PrintWarning("Do you want to specify the path to the files? [y/n] ");
-                response = Console.ReadKey(false).Key;
-                if (response != ConsoleKey.Enter)
-                    Console.WriteLine();
-
-            } while (response != ConsoleKey.Y && response != ConsoleKey.N);
-            switch (response)
-            {
-                case ConsoleKey.N:
-                    return false;
-                case ConsoleKey.Y:
-                    Logger.Inst.Print("Enter path:");
-                    return InitInput(Console.ReadLine()); ;
-            }
-            return false;
+            if(!Logger.Inst.CheckResponse("Do you want to specify the path to the files?"))
+                return false;
+            Logger.Inst.Print("Enter path:");
+            return InitInput(Console.ReadLine()); 
         }
 
         private static bool InitInput(string path)
