@@ -15,7 +15,7 @@ namespace LocalisationValidator
 
             if (!File.Exists(Environment.CurrentDirectory+ @"\Assembly-CSharp.dll"))
             {
-                ConsoleUtilities.Inst.PrintError(
+                Logger.Inst.PrintError(
                     @"Assembly-CSharp.dll is not present! Move the program to ...\Shoppe Keep 2\Shoppe Keep 2_Data\Managed\");
                 Quit();
             }
@@ -33,11 +33,11 @@ namespace LocalisationValidator
             {
                 foreach (var file in _loc.Available)
                 {
-                    ConsoleUtilities.Inst.PrintWarning("Filling file \"{0}\"", file.Filename);
-                    if (file.Entries.FillKeys(_loc.Original.Entries, ConsoleUtilities.Inst))
-                        ConsoleUtilities.Inst.PrintInfo("File has all the lines!");
+                    Logger.Inst.PrintWarning("Filling file \"{0}\"", file.Filename);
+                    if (file.Entries.FillKeys(_loc.Original.Entries, Logger.Inst))
+                        Logger.Inst.PrintInfo("File has all the lines!");
                     file.Entries.SortDict(_loc.Original.Entries);
-                    ConsoleUtilities.Inst.PrintWarning("File \"{0}\" sorted!", file.Filename);
+                    Logger.Inst.PrintWarning("File \"{0}\" sorted!", file.Filename);
                     file.Save();
                 }
             }
@@ -49,7 +49,7 @@ namespace LocalisationValidator
             ConsoleKey response;
             do
             {
-                ConsoleUtilities.Inst.PrintWarning("Do you want to specify the path to the files? [y/n] ");
+                Logger.Inst.PrintWarning("Do you want to specify the path to the files? [y/n] ");
                 response = Console.ReadKey(false).Key;
                 if (response != ConsoleKey.Enter)
                     Console.WriteLine();
@@ -60,7 +60,7 @@ namespace LocalisationValidator
                 case ConsoleKey.N:
                     return false;
                 case ConsoleKey.Y:
-                    ConsoleUtilities.Inst.Print("Enter path:");
+                    Logger.Inst.Print("Enter path:");
                     return InitInput(Console.ReadLine()); ;
             }
             return false;
@@ -70,14 +70,14 @@ namespace LocalisationValidator
         {
             try
             {
-                _loc = new Localization(path, ConsoleUtilities.Inst);
+                _loc = new Localization(path, Logger.Inst);
                 _loc.Init();
                 return true;
             }
             catch (Exception Ex)
             {
-                ConsoleUtilities.Inst.PrintWarning(Ex.Message);
-                ConsoleUtilities.Inst.PrintError(Ex.FriendlyException());
+                Logger.Inst.PrintWarning(Ex.Message);
+                Logger.Inst.PrintError(Ex.FriendlyException());
                 return GetPath();
             }
         }
@@ -88,6 +88,4 @@ namespace LocalisationValidator
             Console.ReadKey();
         }
     }
-
-
 }

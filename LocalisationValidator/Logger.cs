@@ -3,9 +3,9 @@ using System;
 using static Share.Utilities;
 namespace LocalisationValidator
 {
-    internal class ConsoleUtilities : ILogger
+    internal class Logger : ILogger
     {
-        public static readonly ConsoleUtilities Inst = new ConsoleUtilities();
+        public static readonly Logger Inst = new Logger();
 
         public bool CheckResponse(string text)
         {
