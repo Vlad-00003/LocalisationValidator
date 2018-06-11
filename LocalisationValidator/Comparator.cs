@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Share;
+using System.Collections.Generic;
 using System.Linq;
-using static LocalisationValidator.Utilities;
 
 namespace LocalisationValidator
 {
@@ -10,14 +10,16 @@ namespace LocalisationValidator
         {
             return target != null && orig?.All(p => target.ContainsKey(p.Key)) == true;
         }
+
         /// <summary>
         /// Fills the target with missing keys from orig,
         /// Returns if the file was modified.
         /// </summary>
         /// <param name="target"></param>
         /// <param name="orig"></param>
+        /// <param name="logger"></param>
         /// <returns></returns>
-        public static bool FillKeys(this Dictionary<string, string> target, Dictionary<string, string> orig)
+        public static bool FillKeys(this Dictionary<string, string> target, Dictionary<string, string> orig,ILogger logger)
         {
             if (target.Equal(orig))
             {
@@ -26,7 +28,7 @@ namespace LocalisationValidator
             var diff = orig.Keys.Except(target.Keys).ToList();
             foreach (var key in diff)
             {
-                PrintWarning("Adding key \"{0}\" with English value.",key);
+                logger.PrintWarning("Adding key \"{0}\" with English value.",key);
                 target.Add(key,orig[key]);
             }
             return false;
