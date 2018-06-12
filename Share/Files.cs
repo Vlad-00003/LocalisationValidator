@@ -11,11 +11,19 @@ namespace Share
         public List<LocalizationFile> Available = new List<LocalizationFile>();
         private readonly string _path;
         private readonly ILogger _logger;
-        public bool Initilized = false;
+        public bool Initilized { get; private set; }
+
         public Localization(string path, ILogger logger)
         {
             _path = path;
             _logger = logger;
+        }
+
+        public void Init(LocalizationFile original)
+        {
+            Original = original;
+            Available = new List<LocalizationFile>();
+            Initilized = true;
         }
         public void Init()
         {
@@ -75,7 +83,7 @@ namespace Share
     class LocalizationFile
     {
         public readonly string Filename;
-        private readonly string _fullpath;
+        public readonly string _fullpath;
         private JSONObject _text;
         public Dictionary<string, string> Entries;
         private readonly ILogger _logger;
@@ -94,7 +102,7 @@ namespace Share
             ReadFile();
         }
 
-        private void ReadFile()
+        public void ReadFile()
         {
             if (string.IsNullOrEmpty(Filename))
             {
@@ -128,20 +136,26 @@ namespace Share
             }
         }
 
-        private bool Write()
+        private bool Write(string path)
         {
-            if (string.IsNullOrEmpty(_fullpath))
+            if (string.IsNullOrEmpty(path))
             {
                 throw GenerateException("Attempt to write file without path. Filename: \"{0}\"", Filename);
             }
-            File.WriteAllText(_fullpath, _text.ToString(true).Replace("\r\n", "\n").Replace("\r", "\n").Replace("\n", "\r\n"));
+            File.WriteAllText(path, _text.ToString(true).Replace("\r\n", "\n").Replace("\r", "\n").Replace("\n", "\r\n"));
             return true;
         }
 
         public bool Save()
         {
             _text = new JSONObject(Entries);
-            return Write();
+            return Write(_fullpath);
+        }
+
+        public bool SaveAs(string path)
+        {
+            _text = new JSONObject(Entries);
+            return Write(path);
         }
     }
 }
