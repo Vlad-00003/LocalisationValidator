@@ -221,7 +221,7 @@ namespace SK2_Translator.Classes
                 else
                     return;
             }
-            Logger.Inst.PrintInfo("Read line \"{0}\" to \"{1}\" in the file \"{1}\"", id, text, file._fullpath);
+            Logger.Inst.PrintInfo("Write line \"{0}\" to \"{1}\" in the file \"{1}\"", id, text, file._fullpath);
             file.Entries[id] = text;
         }
 

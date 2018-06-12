@@ -54,17 +54,17 @@
             this.txtOrig = new System.Windows.Forms.RichTextBox();
             this.lstKeys = new System.Windows.Forms.ListBox();
             this.msFiles = new System.Windows.Forms.ListBox();
+            this.msFilesCOntext = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.msFilesName = new System.Windows.Forms.ToolStripMenuItem();
+            this.msFilesRemove = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.msFilesCOntext = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.msFilesRemove = new System.Windows.Forms.ToolStripMenuItem();
-            this.msFilesName = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
+            this.msFilesCOntext.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            this.msFilesCOntext.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnConfirm
@@ -74,7 +74,7 @@
             this.btnConfirm.Name = "btnConfirm";
             this.btnConfirm.Size = new System.Drawing.Size(66, 53);
             this.btnConfirm.TabIndex = 2;
-            this.btnConfirm.Text = "Save key\r\n<---";
+            this.btnConfirm.Text = "Save key\r\n (Alt+W)";
             this.btnConfirm.UseVisualStyleBackColor = true;
             this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
             // 
@@ -241,7 +241,7 @@
             this.btnLoad.Name = "btnLoad";
             this.btnLoad.Size = new System.Drawing.Size(66, 52);
             this.btnLoad.TabIndex = 2;
-            this.btnLoad.Text = "Read key\r--->";
+            this.btnLoad.Text = "Read key\r (Alt+R)";
             this.btnLoad.UseVisualStyleBackColor = true;
             this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
             // 
@@ -253,7 +253,7 @@
             this.btnCls.Name = "btnCls";
             this.btnCls.Size = new System.Drawing.Size(75, 63);
             this.btnCls.TabIndex = 7;
-            this.btnCls.Text = "Clear console output";
+            this.btnCls.Text = "Clear console (Alt+C)";
             this.btnCls.UseVisualStyleBackColor = true;
             this.btnCls.Click += new System.EventHandler(this.btnCls_Click);
             // 
@@ -324,6 +324,28 @@
             this.msFiles.TabIndex = 11;
             this.msFiles.SelectedIndexChanged += new System.EventHandler(this.msFiles_SelectedIndexChanged);
             // 
+            // msFilesCOntext
+            // 
+            this.msFilesCOntext.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.msFilesName,
+            this.msFilesRemove});
+            this.msFilesCOntext.Name = "msFilesCOntext";
+            this.msFilesCOntext.Size = new System.Drawing.Size(175, 48);
+            this.msFilesCOntext.Opening += new System.ComponentModel.CancelEventHandler(this.msFilesCOntext_Opening);
+            // 
+            // msFilesName
+            // 
+            this.msFilesName.Enabled = false;
+            this.msFilesName.Name = "msFilesName";
+            this.msFilesName.Size = new System.Drawing.Size(174, 22);
+            // 
+            // msFilesRemove
+            // 
+            this.msFilesRemove.Name = "msFilesRemove";
+            this.msFilesRemove.Size = new System.Drawing.Size(174, 22);
+            this.msFilesRemove.Text = "Удалить из списка";
+            this.msFilesRemove.Click += new System.EventHandler(this.msFilesRemove_Click);
+            // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -375,28 +397,6 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Console";
             // 
-            // msFilesCOntext
-            // 
-            this.msFilesCOntext.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.msFilesName,
-            this.msFilesRemove});
-            this.msFilesCOntext.Name = "msFilesCOntext";
-            this.msFilesCOntext.Size = new System.Drawing.Size(181, 70);
-            this.msFilesCOntext.Opening += new System.ComponentModel.CancelEventHandler(this.msFilesCOntext_Opening);
-            // 
-            // msFilesRemove
-            // 
-            this.msFilesRemove.Name = "msFilesRemove";
-            this.msFilesRemove.Size = new System.Drawing.Size(180, 22);
-            this.msFilesRemove.Text = "Удалить из списка";
-            this.msFilesRemove.Click += new System.EventHandler(this.msFilesRemove_Click);
-            // 
-            // msFilesName
-            // 
-            this.msFilesName.Enabled = false;
-            this.msFilesName.Name = "msFilesName";
-            this.msFilesName.Size = new System.Drawing.Size(180, 22);
-            // 
             // frmTranslator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -416,9 +416,9 @@
             this.Load += new System.EventHandler(this.frmTranslator_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.msFilesCOntext.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
-            this.msFilesCOntext.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 

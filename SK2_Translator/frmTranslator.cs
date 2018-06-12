@@ -19,7 +19,7 @@ namespace SK2_Translator
             InitializeComponent();
         }
 
-        private void btnCls_Click(object sender, EventArgs e)
+        private void btnCls_Click(object sender = null, EventArgs e = null)
         {
             Logger.Inst.ClearConsole();
         }
@@ -56,7 +56,7 @@ namespace SK2_Translator
             txtNew.Text = FileController.Inst.GetFileLine(msFiles.SelectedItem, lstKeys.SelectedItem);
         }
 
-        private void btnConfirm_Click(object sender, EventArgs e)
+        private void btnConfirm_Click(object sender = null, EventArgs e = null)
         {
             if (lstKeys.SelectedItem == null)
             {
@@ -67,7 +67,7 @@ namespace SK2_Translator
         }
 
 
-        private void msSave_Click(object sender, EventArgs e)
+        private void msSave_Click(object sender = null, EventArgs e = null)
         {
             FileController.Inst.Save(msFiles.SelectedItem);
         }
@@ -135,5 +135,22 @@ namespace SK2_Translator
             ResetLists();
             btnLoad_Click();
         }
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            switch (keyData)
+            {
+                case Keys.Alt | Keys.W:
+                    btnConfirm_Click();
+                    return true;
+                case Keys.Alt | Keys.R:
+                    btnLoad_Click();
+                    return true;
+                case Keys.Alt | Keys.C:
+                    btnCls_Click();
+                    return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+
     }
 }
