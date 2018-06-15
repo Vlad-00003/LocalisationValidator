@@ -81,7 +81,7 @@ namespace SK2_Translator.Classes
             Logger.Inst.PrintWarning("Filling file \"{0}\"", file.Filename);
             if (file.Entries.FillKeys(Localization.Original.Entries, Logger.Inst))
                 Logger.Inst.PrintInfo("File has all the lines!");
-            file.Entries.SortDict(Localization.Original.Entries);
+            file.Entries.SortDict(Localization.Original.Entries, Logger.Inst);
             Logger.Inst.PrintWarning("File \"{0}\" sorted! Saving..", file.Filename);
             file.Save();
             Logger.Inst.PrintWarning("File \"{0}\" Saved!", file.Filename);

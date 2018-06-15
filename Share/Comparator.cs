@@ -33,13 +33,23 @@ namespace Share
             return false;
         }
 
-        public static void SortDict(this Dictionary<string, string> target, Dictionary<string, string> orig)
+        public static void SortDict(this Dictionary<string, string> target, Dictionary<string, string> orig, ILogger logger)
         {
             var bckp = new Dictionary<string,string>(target);
             target.Clear();
             foreach (var pair in orig)
             {
                 target.Add(pair.Key,bckp[pair.Key]);
+                bckp.Remove(pair.Key);
+            }
+            foreach (var pair in bckp)
+            {
+                if (target.ContainsKey(pair.Key))
+                {
+                    logger.PrintWarning("Duplicate key \"{0}\" while sorting the dictionary! This should never happen!",pair.Key);
+                    continue;
+                }
+                target.Add(pair.Key,pair.Value);
             }
         }
     }
