@@ -2,7 +2,6 @@
 using System.IO;
 using Share;
 using static Share.Utilities;
-using static Share.Comparator;
 
 namespace LocalisationValidator
 {
@@ -61,10 +60,10 @@ namespace LocalisationValidator
                 _loc.Init();
                 return true;
             }
-            catch (Exception Ex)
+            catch (Exception ex)
             {
-                Logger.Inst.PrintWarning(Ex.Message);
-                Logger.Inst.PrintError(Ex.FriendlyException());
+                Logger.Inst.PrintWarning(ex.Message);
+                Logger.Inst.PrintError(ex.FriendlyException());
                 return GetPath();
             }
         }

@@ -27,9 +27,9 @@ namespace Share
             Exception ex = null;
             if (args != null && args.Length > 0)
             {
-                if (args[0] is Exception)
+                if (args[0] is Exception exception)
                 {
-                    ex = (Exception) args[0];
+                    ex = exception;
                     args = args.Skip(1).ToArray();
                 }
                 if(args[0] == null)

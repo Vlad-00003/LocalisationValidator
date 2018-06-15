@@ -5,7 +5,7 @@ namespace Share
 {
     internal static class Comparator
     {
-        public static bool Equal(this Dictionary<string, string> target, Dictionary<string, string> orig)
+        private static bool Equal(this Dictionary<string, string> target, Dictionary<string, string> orig)
         {
             return target != null && orig?.All(p => target.ContainsKey(p.Key)) == true;
         }

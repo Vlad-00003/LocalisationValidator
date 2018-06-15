@@ -1,6 +1,6 @@
 ﻿namespace SK2_Translator
 {
-    partial class frmTranslator
+    partial class FrmTranslator
     {
         /// <summary>
         /// Обязательная переменная конструктора.
@@ -76,7 +76,7 @@
             this.btnConfirm.TabIndex = 2;
             this.btnConfirm.Text = "Save key\r\n (Alt+W)";
             this.btnConfirm.UseVisualStyleBackColor = true;
-            this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
+            this.btnConfirm.Click += new System.EventHandler(this.BtnConfirm_Click);
             // 
             // menuStrip1
             // 
@@ -121,7 +121,7 @@
             this.msOpenOriginal.Size = new System.Drawing.Size(246, 22);
             this.msOpenOriginal.Text = "Original";
             this.msOpenOriginal.ToolTipText = "Open file with the original text";
-            this.msOpenOriginal.Click += new System.EventHandler(this.msOpenOriginal_Click);
+            this.msOpenOriginal.Click += new System.EventHandler(this.MsOpenOriginal_Click);
             // 
             // translatedToolStripMenuItem
             // 
@@ -130,7 +130,7 @@
             this.translatedToolStripMenuItem.Size = new System.Drawing.Size(246, 22);
             this.translatedToolStripMenuItem.Text = "Translated";
             this.translatedToolStripMenuItem.ToolTipText = "Open your desired language file";
-            this.translatedToolStripMenuItem.Click += new System.EventHandler(this.translatedToolStripMenuItem_Click);
+            this.translatedToolStripMenuItem.Click += new System.EventHandler(this.TranslatedToolStripMenuItem_Click);
             // 
             // msOpenFolder
             // 
@@ -149,7 +149,7 @@
             this.reloadFIlesToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
             this.reloadFIlesToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
             this.reloadFIlesToolStripMenuItem.Text = "Reload FIles";
-            this.reloadFIlesToolStripMenuItem.Click += new System.EventHandler(this.reloadFIlesToolStripMenuItem_Click);
+            this.reloadFIlesToolStripMenuItem.Click += new System.EventHandler(this.ReloadFIlesToolStripMenuItem_Click);
             // 
             // msSave
             // 
@@ -158,7 +158,7 @@
             this.msSave.Size = new System.Drawing.Size(186, 22);
             this.msSave.Text = "Save";
             this.msSave.ToolTipText = "Save the current translating file";
-            this.msSave.Click += new System.EventHandler(this.msSave_Click);
+            this.msSave.Click += new System.EventHandler(this.MsSave_Click);
             // 
             // msSaveAs
             // 
@@ -168,7 +168,7 @@
             this.msSaveAs.Size = new System.Drawing.Size(186, 22);
             this.msSaveAs.Text = "Save As";
             this.msSaveAs.ToolTipText = "Save translated files into the specified location";
-            this.msSaveAs.Click += new System.EventHandler(this.msSaveAs_Click);
+            this.msSaveAs.Click += new System.EventHandler(this.MsSaveAs_Click);
             // 
             // saveAllToolStripMenuItem
             // 
@@ -176,7 +176,7 @@
             this.saveAllToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F12;
             this.saveAllToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
             this.saveAllToolStripMenuItem.Text = "Save All";
-            this.saveAllToolStripMenuItem.Click += new System.EventHandler(this.saveAllToolStripMenuItem_Click);
+            this.saveAllToolStripMenuItem.Click += new System.EventHandler(this.SaveAllToolStripMenuItem_Click);
             // 
             // msQuit
             // 
@@ -185,7 +185,7 @@
             this.msQuit.Size = new System.Drawing.Size(186, 22);
             this.msQuit.Text = "Exit";
             this.msQuit.ToolTipText = "Quit the application";
-            this.msQuit.Click += new System.EventHandler(this.msQuit_Click);
+            this.msQuit.Click += new System.EventHandler(this.MsQuit_Click);
             // 
             // msSettings
             // 
@@ -243,7 +243,7 @@
             this.btnLoad.TabIndex = 2;
             this.btnLoad.Text = "Read key\r (Alt+R)";
             this.btnLoad.UseVisualStyleBackColor = true;
-            this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
+            this.btnLoad.Click += new System.EventHandler(this.BtnLoad_Click);
             // 
             // btnCls
             // 
@@ -255,7 +255,7 @@
             this.btnCls.TabIndex = 7;
             this.btnCls.Text = "Clear console (Alt+C)";
             this.btnCls.UseVisualStyleBackColor = true;
-            this.btnCls.Click += new System.EventHandler(this.btnCls_Click);
+            this.btnCls.Click += new System.EventHandler(this.BtnCls_Click);
             // 
             // txtConsole
             // 
@@ -271,7 +271,7 @@
             this.txtConsole.Size = new System.Drawing.Size(834, 111);
             this.txtConsole.TabIndex = 8;
             this.txtConsole.Text = "";
-            this.txtConsole.VisibleChanged += new System.EventHandler(this.txtConsole_VisibleChanged);
+            this.txtConsole.VisibleChanged += new System.EventHandler(this.TxtConsole_VisibleChanged);
             // 
             // txtNew
             // 
@@ -310,7 +310,7 @@
             this.lstKeys.Name = "lstKeys";
             this.lstKeys.Size = new System.Drawing.Size(124, 316);
             this.lstKeys.TabIndex = 3;
-            this.lstKeys.SelectedIndexChanged += new System.EventHandler(this.lstKeys_SelectedIndexChanged);
+            this.lstKeys.SelectedIndexChanged += new System.EventHandler(this.LstKeys_SelectedIndexChanged);
             // 
             // msFiles
             // 
@@ -322,7 +322,7 @@
             this.msFiles.Name = "msFiles";
             this.msFiles.Size = new System.Drawing.Size(169, 316);
             this.msFiles.TabIndex = 11;
-            this.msFiles.SelectedIndexChanged += new System.EventHandler(this.msFiles_SelectedIndexChanged);
+            this.msFiles.SelectedIndexChanged += new System.EventHandler(this.MsFiles_SelectedIndexChanged);
             // 
             // msFilesCOntext
             // 
@@ -331,7 +331,7 @@
             this.msFilesRemove});
             this.msFilesCOntext.Name = "msFilesCOntext";
             this.msFilesCOntext.Size = new System.Drawing.Size(175, 48);
-            this.msFilesCOntext.Opening += new System.ComponentModel.CancelEventHandler(this.msFilesCOntext_Opening);
+            this.msFilesCOntext.Opening += new System.ComponentModel.CancelEventHandler(this.MsFilesCOntext_Opening);
             // 
             // msFilesName
             // 
@@ -344,7 +344,7 @@
             this.msFilesRemove.Name = "msFilesRemove";
             this.msFilesRemove.Size = new System.Drawing.Size(174, 22);
             this.msFilesRemove.Text = "Удалить из списка";
-            this.msFilesRemove.Click += new System.EventHandler(this.msFilesRemove_Click);
+            this.msFilesRemove.Click += new System.EventHandler(this.MsFilesRemove_Click);
             // 
             // tableLayoutPanel1
             // 
@@ -411,9 +411,9 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.MinimumSize = new System.Drawing.Size(638, 387);
-            this.Name = "frmTranslator";
+            this.Name = "FrmTranslator";
             this.Text = "Shoope Keep 2 Translator";
-            this.Load += new System.EventHandler(this.frmTranslator_Load);
+            this.Load += new System.EventHandler(this.FrmTranslator_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.msFilesCOntext.ResumeLayout(false);

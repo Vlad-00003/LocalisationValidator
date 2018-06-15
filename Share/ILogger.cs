@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Diagnostics.CodeAnalysis;
 
 namespace Share
 {
-    interface ILogger
+    [SuppressMessage("ReSharper", "UnusedMemberInSuper.Global")]
+    internal interface ILogger
     {
         void PrintWarning(string format, params object[] args);
         void PrintInfo(string format, params object[] args);

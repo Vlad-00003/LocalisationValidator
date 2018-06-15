@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Share;
+using System;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Share;
 using static Share.Utilities;
 
 namespace SK2_Translator.Classes
 {
     internal class Logger : ILogger
     {
-        public static Logger Inst = new Logger();
+        public static readonly Logger Inst = new Logger();
         public void PrintWarning(string format, params object[] args) => PrintLine("[WARNING] " + FormatString(format, args), Color.Orange);
 
         public void PrintInfo(string format, params object[] args) => PrintLine("[INFO] " + FormatString(format, args), Color.Cyan);
@@ -23,7 +19,7 @@ namespace SK2_Translator.Classes
         {
             PrintLine(FormatString(format, args), SystemColors.WindowText);
         }
-        private void PrintLine(string text, Color color)
+        private static void PrintLine(string text, Color color)
         {
             var scolor = Program.Console.SelectionColor;
             Program.Console.SelectionColor = color;
@@ -50,16 +46,17 @@ namespace SK2_Translator.Classes
             PrintInfo(text, args);
         }
 
-        public void ShowWarinig(string text, string capation = "Warning", params object[] args)
+        public static void ShowWarinig(string text, string capation = "Warning", params object[] args)
         {
             MessageBox.Show(FormatString(text, args), capation, MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
-        public void ShowError(string text, string capation ="Error", params object[] args)
+        public static void ShowError(string text, string capation ="Error", params object[] args)
         {
             MessageBox.Show(FormatString(text,args), capation, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
-        public void ShowInfo(string text, string capation = "Info", params object[] args)
+
+        private static void ShowInfo(string text, string capation = "Info", params object[] args)
         {
             MessageBox.Show(FormatString(text, args), capation, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }

@@ -1,51 +1,45 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using SK2_Translator.Classes;
+using System;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Share;
-using SK2_Translator.Classes;
 
 namespace SK2_Translator
 {
-    public partial class frmTranslator : Form
+    public partial class FrmTranslator : Form
     {
-        public frmTranslator()
+        public FrmTranslator()
         {
             InitializeComponent();
         }
 
-        private void btnCls_Click(object sender = null, EventArgs e = null)
+        private void BtnCls_Click(object sender = null, EventArgs e = null)
         {
             Logger.Inst.ClearConsole();
         }
 
-        private void txtConsole_VisibleChanged(object sender, EventArgs e)
+        private void TxtConsole_VisibleChanged(object sender, EventArgs e)
         {
             txtConsole.SelectionStart = txtConsole.TextLength;
             txtConsole.ScrollToCaret();
         }
 
-        private void frmTranslator_Load(object sender, EventArgs e)
+        private void FrmTranslator_Load(object sender, EventArgs e)
         {
             ResetLists();
         }
-        private void msFiles_SelectedIndexChanged(object sender, EventArgs e)
+        private void MsFiles_SelectedIndexChanged(object sender, EventArgs e)
         {
             if(msAutoFile.Checked)
-                btnLoad_Click();
+                BtnLoad_Click();
         }
-        private void lstKeys_SelectedIndexChanged(object sender, EventArgs e)
+        private void LstKeys_SelectedIndexChanged(object sender, EventArgs e)
         {
             if(msAutoClick.Checked)
-                btnLoad_Click();
+                BtnLoad_Click();
         }
 
-        private void btnLoad_Click(object sender = null, EventArgs e = null)
+        private void BtnLoad_Click(object sender = null, EventArgs e = null)
         {
             if (lstKeys.SelectedItem == null)
             {
@@ -56,7 +50,7 @@ namespace SK2_Translator
             txtNew.Text = FileController.Inst.GetFileLine(msFiles.SelectedItem, lstKeys.SelectedItem);
         }
 
-        private void btnConfirm_Click(object sender = null, EventArgs e = null)
+        private void BtnConfirm_Click(object sender = null, EventArgs e = null)
         {
             if (lstKeys.SelectedItem == null)
             {
@@ -67,7 +61,7 @@ namespace SK2_Translator
         }
 
 
-        private void msSave_Click(object sender = null, EventArgs e = null)
+        private void MsSave_Click(object sender = null, EventArgs e = null)
         {
             FileController.Inst.Save(msFiles.SelectedItem);
         }
@@ -84,24 +78,24 @@ namespace SK2_Translator
                 msFiles.SelectedIndex = 0;
         }
 
-        private void msSaveAs_Click(object sender, EventArgs e)
+        private void MsSaveAs_Click(object sender, EventArgs e)
         {
             FileController.Inst.SaveAs(msFiles.SelectedItem);
             ResetLists();
         }
 
-        private void saveAllToolStripMenuItem_Click(object sender, EventArgs e)
+        private void SaveAllToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FileController.Inst.SaveAll();
         }
 
-        private void reloadFIlesToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ReloadFIlesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FileController.Inst.ReloadFiles();
             ResetLists();
         }
 
-        private void msQuit_Click(object sender, EventArgs e)
+        private void MsQuit_Click(object sender, EventArgs e)
         {
             if (Logger.Inst.CheckResponse("Do you want to quit?"))
             {
@@ -110,43 +104,43 @@ namespace SK2_Translator
             }
         }
 
-        private void msOpenOriginal_Click(object sender, EventArgs e)
+        private void MsOpenOriginal_Click(object sender, EventArgs e)
         {
             FileController.Inst.OpenOriginal();
             ResetLists();
-            btnLoad_Click();
+            BtnLoad_Click();
         }
 
-        private void translatedToolStripMenuItem_Click(object sender, EventArgs e)
+        private void TranslatedToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FileController.Inst.OpenFiles();
             ResetLists();
-            btnLoad_Click();
+            BtnLoad_Click();
         }
 
-        private void msFilesCOntext_Opening(object sender, CancelEventArgs e)
+        private void MsFilesCOntext_Opening(object sender, CancelEventArgs e)
         {
-            msFilesName.Text = FileController.Localization.Available[msFiles.SelectedIndex]._fullpath;
+            msFilesName.Text = FileController.Localization.Available[msFiles.SelectedIndex].Fullpath;
         }
 
-        private void msFilesRemove_Click(object sender, EventArgs e)
+        private void MsFilesRemove_Click(object sender, EventArgs e)
         {
-            FileController.Inst.RemoveFile(msFiles.SelectedItem);
+            FileController.RemoveFile(msFiles.SelectedItem);
             ResetLists();
-            btnLoad_Click();
+            BtnLoad_Click();
         }
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
             switch (keyData)
             {
                 case Keys.Alt | Keys.W:
-                    btnConfirm_Click();
+                    BtnConfirm_Click();
                     return true;
                 case Keys.Alt | Keys.R:
-                    btnLoad_Click();
+                    BtnLoad_Click();
                     return true;
                 case Keys.Alt | Keys.C:
-                    btnCls_Click();
+                    BtnCls_Click();
                     return true;
             }
             return base.ProcessCmdKey(ref msg, keyData);

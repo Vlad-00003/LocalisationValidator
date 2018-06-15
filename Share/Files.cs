@@ -83,20 +83,20 @@ namespace Share
     class LocalizationFile
     {
         public readonly string Filename;
-        public readonly string _fullpath;
+        public readonly string Fullpath;
         private JSONObject _text;
         public Dictionary<string, string> Entries;
         private readonly ILogger _logger;
 
         public override string ToString()
         {
-            return $"{_fullpath} (lang:{Entries["LANG_NAME"]}";
+            return $"{Fullpath} (lang:{Entries["LANG_NAME"]}";
         }
 
         public LocalizationFile(string fullpath,ILogger logger)
         {
             Filename = Path.GetFileName(fullpath);
-            _fullpath = fullpath;
+            Fullpath = fullpath;
             Entries = new Dictionary<string, string>();
             _logger = logger;
             ReadFile();
@@ -108,7 +108,7 @@ namespace Share
             {
                 throw GenerateException("Attempt to read file without path.");
             }
-            var file = File.ReadAllText(_fullpath);
+            var file = File.ReadAllText(Fullpath);
             try
             {
                 _text = new JSONObject(file);
@@ -149,7 +149,7 @@ namespace Share
         public bool Save()
         {
             _text = new JSONObject(Entries);
-            return Write(_fullpath);
+            return Write(Fullpath);
         }
 
         public bool SaveAs(string path)
