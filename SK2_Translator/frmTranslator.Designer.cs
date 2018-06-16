@@ -44,6 +44,7 @@
             this.msSettings = new System.Windows.Forms.ToolStripMenuItem();
             this.msAutoClick = new System.Windows.Forms.ToolStripMenuItem();
             this.msAutoFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.MsAutoSave = new System.Windows.Forms.ToolStripMenuItem();
             this.infoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.msInfoHelp = new System.Windows.Forms.ToolStripMenuItem();
             this.msInfoAbout = new System.Windows.Forms.ToolStripMenuItem();
@@ -54,17 +55,21 @@
             this.txtOrig = new System.Windows.Forms.RichTextBox();
             this.lstKeys = new System.Windows.Forms.ListBox();
             this.msFiles = new System.Windows.Forms.ListBox();
-            this.msFilesCOntext = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.msFilesContext = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.msFilesName = new System.Windows.Forms.ToolStripMenuItem();
             this.msFilesRemove = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.TxtKeysSearch = new System.Windows.Forms.TextBox();
+            this.msKeysRemove = new System.Windows.Forms.ToolStripMenuItem();
+            this.msKeysContext = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.menuStrip1.SuspendLayout();
-            this.msFilesCOntext.SuspendLayout();
+            this.msFilesContext.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.msKeysContext.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnConfirm
@@ -191,7 +196,8 @@
             // 
             this.msSettings.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.msAutoClick,
-            this.msAutoFile});
+            this.msAutoFile,
+            this.MsAutoSave});
             this.msSettings.Name = "msSettings";
             this.msSettings.Size = new System.Drawing.Size(61, 20);
             this.msSettings.Text = "Settings";
@@ -211,6 +217,14 @@
             this.msAutoFile.Size = new System.Drawing.Size(250, 22);
             this.msAutoFile.Text = "Automaticly open file on click";
             this.msAutoFile.ToolTipText = "Be carefull! You might loose your data!";
+            // 
+            // MsAutoSave
+            // 
+            this.MsAutoSave.CheckOnClick = true;
+            this.MsAutoSave.Name = "MsAutoSave";
+            this.MsAutoSave.Size = new System.Drawing.Size(250, 22);
+            this.MsAutoSave.Text = "Automaticly save key & file";
+            this.MsAutoSave.ToolTipText = "Automaticly saves the changed key & file if you selecting another key or file";
             // 
             // infoToolStripMenuItem
             // 
@@ -284,6 +298,7 @@
             this.txtNew.Size = new System.Drawing.Size(544, 152);
             this.txtNew.TabIndex = 9;
             this.txtNew.Text = "Your translated text goes here";
+            this.txtNew.TextChanged += new System.EventHandler(this.TxtNew_TextChanged);
             // 
             // txtOrig
             // 
@@ -302,13 +317,14 @@
             // 
             this.lstKeys.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.lstKeys.ContextMenuStrip = this.msKeysContext;
             this.lstKeys.FormattingEnabled = true;
             this.lstKeys.Items.AddRange(new object[] {
             "Kek",
             "Крф"});
-            this.lstKeys.Location = new System.Drawing.Point(12, 49);
+            this.lstKeys.Location = new System.Drawing.Point(192, 70);
             this.lstKeys.Name = "lstKeys";
-            this.lstKeys.Size = new System.Drawing.Size(124, 316);
+            this.lstKeys.Size = new System.Drawing.Size(124, 290);
             this.lstKeys.TabIndex = 3;
             this.lstKeys.SelectedIndexChanged += new System.EventHandler(this.LstKeys_SelectedIndexChanged);
             // 
@@ -316,22 +332,22 @@
             // 
             this.msFiles.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.msFiles.ContextMenuStrip = this.msFilesCOntext;
+            this.msFiles.ContextMenuStrip = this.msFilesContext;
             this.msFiles.FormattingEnabled = true;
-            this.msFiles.Location = new System.Drawing.Point(770, 49);
+            this.msFiles.Location = new System.Drawing.Point(12, 44);
             this.msFiles.Name = "msFiles";
-            this.msFiles.Size = new System.Drawing.Size(169, 316);
+            this.msFiles.Size = new System.Drawing.Size(174, 316);
             this.msFiles.TabIndex = 11;
             this.msFiles.SelectedIndexChanged += new System.EventHandler(this.MsFiles_SelectedIndexChanged);
             // 
-            // msFilesCOntext
+            // msFilesContext
             // 
-            this.msFilesCOntext.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.msFilesContext.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.msFilesName,
             this.msFilesRemove});
-            this.msFilesCOntext.Name = "msFilesCOntext";
-            this.msFilesCOntext.Size = new System.Drawing.Size(175, 48);
-            this.msFilesCOntext.Opening += new System.ComponentModel.CancelEventHandler(this.MsFilesCOntext_Opening);
+            this.msFilesContext.Name = "msFilesCOntext";
+            this.msFilesContext.Size = new System.Drawing.Size(175, 48);
+            this.msFilesContext.Opening += new System.ComponentModel.CancelEventHandler(this.MsFilesCOntext_Opening);
             // 
             // msFilesName
             // 
@@ -358,7 +374,7 @@
             this.tableLayoutPanel1.Controls.Add(this.txtNew, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.btnConfirm, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.btnLoad, 0, 0);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(142, 49);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(322, 41);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -369,7 +385,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(812, 31);
+            this.label5.Location = new System.Drawing.Point(42, 25);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(71, 13);
             this.label5.TabIndex = 12;
@@ -378,7 +394,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(32, 31);
+            this.label4.Location = new System.Drawing.Point(206, 25);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(84, 13);
             this.label4.TabIndex = 12;
@@ -397,11 +413,34 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Console";
             // 
-            // frmTranslator
+            // TxtKeysSearch
+            // 
+            this.TxtKeysSearch.Location = new System.Drawing.Point(193, 44);
+            this.TxtKeysSearch.Name = "TxtKeysSearch";
+            this.TxtKeysSearch.Size = new System.Drawing.Size(123, 20);
+            this.TxtKeysSearch.TabIndex = 15;
+            this.TxtKeysSearch.TextChanged += new System.EventHandler(this.TxtKeysSearch_TextChanged);
+            // 
+            // msKeysRemove
+            // 
+            this.msKeysRemove.Name = "msKeysRemove";
+            this.msKeysRemove.Size = new System.Drawing.Size(180, 22);
+            this.msKeysRemove.Text = "Remove key";
+            this.msKeysRemove.Click += new System.EventHandler(this.MsKeysRemove_Click);
+            // 
+            // msKeysContext
+            // 
+            this.msKeysContext.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.msKeysRemove});
+            this.msKeysContext.Name = "msKeysContext";
+            this.msKeysContext.Size = new System.Drawing.Size(181, 48);
+            // 
+            // FrmTranslator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(951, 559);
+            this.Controls.Add(this.TxtKeysSearch);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.label5);
@@ -416,9 +455,10 @@
             this.Load += new System.EventHandler(this.FrmTranslator_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.msFilesCOntext.ResumeLayout(false);
+            this.msFilesContext.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
+            this.msKeysContext.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -454,9 +494,13 @@
         private System.Windows.Forms.ToolStripMenuItem reloadFIlesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveAllToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem msAutoClick;
-        private System.Windows.Forms.ContextMenuStrip msFilesCOntext;
+        private System.Windows.Forms.ContextMenuStrip msFilesContext;
         private System.Windows.Forms.ToolStripMenuItem msFilesRemove;
         private System.Windows.Forms.ToolStripMenuItem msFilesName;
+        private System.Windows.Forms.ToolStripMenuItem MsAutoSave;
+        private System.Windows.Forms.TextBox TxtKeysSearch;
+        private System.Windows.Forms.ContextMenuStrip msKeysContext;
+        private System.Windows.Forms.ToolStripMenuItem msKeysRemove;
     }
 }
 

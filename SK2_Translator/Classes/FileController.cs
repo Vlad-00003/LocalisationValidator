@@ -157,14 +157,14 @@ namespace SK2_Translator.Classes
             var id = key.ToString();
             if (!Localization.Original.Entries.ContainsKey(id))
             {
-                Logger.Inst.MakeError("The given key \"{0}\" is not present in the original file!");
-                return "Null";
+                Logger.Inst.MakeError("The given key \"{0}\" is not present in the original file!",key);
+                return "<Null>";
             }
             Logger.Inst.PrintInfo("Read line \"{0}\" from original (\"{1}\") file.", id, Localization.Original.Fullpath);
             return Localization.Original.Entries[id];
         }
 
-        private static LocalizationFile GetLFile(object filename)
+        public static LocalizationFile GetLFile(object filename)
         {
             if (filename == null)
             {
@@ -173,13 +173,12 @@ namespace SK2_Translator.Classes
             }
             var file = Localization.Available.FirstOrDefault(p => p.Filename == filename.ToString());
             if (file != null) return file;
-            {
-                Logger.Inst.MakeError("Listed file not found. Contact the developer and give him the log file!", filename);
-                Logger.Inst.PrintError("File: \"{0}\"\nLocalization.Available:\n{1}",
-                    filename,
-                    string.Join("\n", Localization.Available.Select(p => p.Fullpath).ToArray()));
-                return null;
-            }
+
+            Logger.Inst.MakeError("Listed file not found. Contact the developer and give him the log file!", filename);
+            Logger.Inst.PrintError("File: \"{0}\"\nLocalization.Available:\n{1}",
+                filename,
+                string.Join("\n", Localization.Available.Select(p => p.Fullpath).ToArray()));
+            return null;
         }
 
         public string GetFileLine(object filename, object key)
@@ -192,14 +191,14 @@ namespace SK2_Translator.Classes
             }
             if (!file.Entries.ContainsKey(id))
             {
-                Logger.Inst.MakeError("File \"{0}\" doesn't have line \"{1}\".", filename);
+                Logger.Inst.MakeError("File \"{0}\" doesn't have line \"{1}\".", filename,id);
                 if (Logger.Inst.CheckResponse("Do you want to validate the file?"))
+                {
                     CheckFile(file);
-                else
-                    return "Null";
+                }
             }
             Logger.Inst.PrintInfo("Read line \"{0}\" from the file \"{1}\".", id, file.Fullpath);
-            return file.Entries[id];
+            return file.Entries.ContainsKey(id) ? file.Entries[id] : "<NULL>";
         }
 
         public void SetFileLine(object filename, object key, string text)
@@ -271,7 +270,7 @@ namespace SK2_Translator.Classes
 
         }
 
-        public void SaveAll()
+        public static void SaveAll()
         {
             if (Logger.Inst.CheckResponse("Do you want to save all files?"))
             {
@@ -279,12 +278,8 @@ namespace SK2_Translator.Classes
             }
         }
 
-        public void ReloadFiles()
+        public static void ReloadFiles()
         {
-            if (Logger.Inst.CheckResponse("Do you want to save all files?"))
-            {
-                SaveAll();
-            }
             HashSet<string> deleted = new HashSet<string>();
             foreach (LocalizationFile file in Localization.Available)
             {
