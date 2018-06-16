@@ -21,12 +21,19 @@ namespace SK2_Translator.Classes
         }
         private static void PrintLine(string text, Color color)
         {
-            var scolor = Program.Console.SelectionColor;
-            Program.Console.SelectionColor = color;
-            string msg = FormatString("{0}{1}: {2}",Environment.NewLine, DateTime.Now.ToShortTimeString(), text);
-            Program.Console.AppendText(msg);
-            LogToFile(msg);
-            Program.Console.SelectionColor = scolor;
+            string msg = FormatString("{0}{1}: {2}", Environment.NewLine, DateTime.Now.ToShortTimeString(), text);
+            try
+            {
+                var scolor = Program.Console.SelectionColor;
+                Program.Console.SelectionColor = color;
+                Program.Console.AppendText(msg);
+                LogToFile(msg);
+                Program.Console.SelectionColor = scolor;
+            }
+            catch (Exception)
+            {
+                LogToFile(msg);
+            }
         }
 
         public void MakeError(string text, params object[] args)

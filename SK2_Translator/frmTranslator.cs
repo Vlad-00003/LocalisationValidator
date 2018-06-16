@@ -19,7 +19,9 @@ namespace SK2_Translator
         public FrmTranslator()
         {
             InitializeComponent();
+            Application.ApplicationExit += (a,b) => SaveChanged();
         }
+
 
         private void BtnCls_Click(object sender = null, EventArgs e = null)
         {
@@ -157,11 +159,14 @@ namespace SK2_Translator
         }
         private void SaveChanged()
         {
-            foreach (var file in _unsavedFiles.Where(file => MsAutoSave.Checked |
-                Logger.Inst.CheckResponse($"Do you want to save changes to \"{file}\"?")))
+            for (int i = 0; i < _unsavedFiles.Count; i++)
             {
-                FileController.Inst.Save(file);
-                _unsavedFiles.Remove(msFiles.SelectedItem.ToString());
+                if(MsAutoSave.Checked |
+                   Logger.Inst.CheckResponse($"Do you want to save changes to \"{_unsavedFiles[i]}\"?"))
+                {
+                    FileController.Inst.Save(_unsavedFiles[i]);
+                    _unsavedFiles.Remove(msFiles.SelectedItem.ToString());
+                }
             }
         }
         private void MsQuit_Click(object sender, EventArgs e)
@@ -174,14 +179,14 @@ namespace SK2_Translator
         private void MsOpenOriginal_Click(object sender, EventArgs e)
         {
             FileController.Inst.OpenOriginal();
-            ResetLists();
+            ResetLists(true);
             BtnLoad_Click();
         }
 
         private void TranslatedToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FileController.Inst.OpenFiles();
-            ResetLists();
+            ResetLists(true);
             BtnLoad_Click();
         }
 
@@ -200,7 +205,7 @@ namespace SK2_Translator
                     MsSave_Click();
                 }
             }
-            ResetLists();
+            ResetLists(true);
             BtnLoad_Click();
         }
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
