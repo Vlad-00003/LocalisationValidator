@@ -60,6 +60,10 @@ namespace SK2_Translator
 
         private void BtnLoad_Click(object sender = null, EventArgs e = null)
         {
+            if (_unsavedText)
+                if (MsAutoSave.Checked || Logger.Inst.CheckResponse("Do you want to save current line?"))
+                    SetLine(_currentFile, _currentKey, txtNew.Text);
+
             if (_currentFile != msFiles.SelectedItem?.ToString())
             {
                 ResetKeys();
@@ -69,12 +73,6 @@ namespace SK2_Translator
                 Logger.Inst.MakeWarning("You must select the key!");
                 return;
             }
-            if (_unsavedText)
-                if (MsAutoSave.Checked || Logger.Inst.CheckResponse("Do you want to save current line?"))
-                    SetLine(_currentFile, _currentKey, txtNew.Text);
-
-
-
             txtOrig.Text = FileController.Inst.GetOriginalLine(lstKeys.SelectedItem);
             txtNew.Text = FileController.Inst.GetFileLine(_currentFile, lstKeys.SelectedItem);
             _unsavedText = false;
