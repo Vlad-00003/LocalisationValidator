@@ -42,7 +42,8 @@ namespace Share
                 target.Add(pair.Key,bckp[pair.Key]);
                 bckp.Remove(pair.Key);
             }
-            foreach (var pair in bckp)
+            var orderBy = bckp.OrderBy(t => t.Key);
+            foreach (var pair in orderBy)
             {
                 if (target.ContainsKey(pair.Key))
                 {
