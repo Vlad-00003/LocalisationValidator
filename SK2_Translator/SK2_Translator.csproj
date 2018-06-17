@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="Classes\FileController.cs" />
     <Compile Include="Classes\Logger.cs" />
+    <Compile Include="Classes\Prompt.cs" />
     <Compile Include="frmTranslator.cs">
       <SubType>Form</SubType>
     </Compile>

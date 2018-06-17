@@ -24,7 +24,7 @@ namespace SK2_Translator
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Frm = new FrmTranslator();
-            Console = Frm.txtConsole;
+            Console = Frm.TxtConsole;
             Logger.Inst.ClearConsole();
             Logger.Inst.PrintInfo("Initialization started");
 

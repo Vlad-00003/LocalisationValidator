@@ -181,6 +181,15 @@ namespace SK2_Translator.Classes
             return null;
         }
 
+        public static void SortFileKeys(object filename)
+            => SortFileKeys(GetLFile(filename));
+
+        private static void SortFileKeys(LocalizationFile file) =>
+            file?.Entries.SortDict(Localization.Original.Entries, Logger.Inst);
+
+        public static void SortFilesKeys()
+            => Localization.Available.ForEach(SortFileKeys);
+
         public string GetFileLine(object filename, object key)
         {
             string id = key.ToString();
