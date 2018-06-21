@@ -68,6 +68,7 @@
             this.Label4 = new System.Windows.Forms.Label();
             this.GroupBox1 = new System.Windows.Forms.GroupBox();
             this.TxtKeysSearch = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.MenuStrip.SuspendLayout();
             this.MsKeysContext.SuspendLayout();
             this.MsFilesContext.SuspendLayout();
@@ -251,13 +252,13 @@
             // MsInfoHelp
             // 
             this.MsInfoHelp.Name = "MsInfoHelp";
-            this.MsInfoHelp.Size = new System.Drawing.Size(180, 22);
+            this.MsInfoHelp.Size = new System.Drawing.Size(107, 22);
             this.MsInfoHelp.Text = "Help";
             // 
             // MsInfoAbout
             // 
             this.MsInfoAbout.Name = "MsInfoAbout";
-            this.MsInfoAbout.Size = new System.Drawing.Size(180, 22);
+            this.MsInfoAbout.Size = new System.Drawing.Size(107, 22);
             this.MsInfoAbout.Text = "About";
             // 
             // BtnLoad
@@ -463,11 +464,21 @@
             this.TxtKeysSearch.TabIndex = 15;
             this.TxtKeysSearch.TextChanged += new System.EventHandler(this.TxtKeysSearch_TextChanged);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(109, 372);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(291, 13);
+            this.label1.TabIndex = 16;
+            this.label1.Text = "Use \"Alt+Up (arrow)\"  or \"Alt+Down (arrow)\" to change keys";
+            // 
             // FrmTranslator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(951, 559);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.TxtKeysSearch);
             this.Controls.Add(this.GroupBox1);
             this.Controls.Add(this.TableLayoutPanel1);
@@ -532,6 +543,7 @@
         private System.Windows.Forms.ToolStripMenuItem AddKeyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem OrderItemsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem SortKeysToolStripMenuItem;
+        private System.Windows.Forms.Label label1;
     }
 }
 

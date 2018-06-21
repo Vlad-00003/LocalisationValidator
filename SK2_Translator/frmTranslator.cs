@@ -70,6 +70,11 @@ namespace SK2_Translator
                 Logger.Inst.PrintInfo("File changed.");
                 ResetLists();
             }
+            if (_currentKey != LstKeys.SelectedItem.ToString())
+            {
+                Logger.Inst.PrintInfo("Key changed.");
+                ResetKeys();
+            }
             if (LstKeys.SelectedItem == null)
             {
                 Logger.Inst.MakeWarning("You must select the key!");
@@ -108,7 +113,7 @@ namespace SK2_Translator
 
         private void BtnConfirm_Click(object sender = null, EventArgs e = null)
         {
-            Logger.Inst.PrintInfo($"Confirm button clicked.");
+            Logger.Inst.PrintInfo("Confirm button clicked.");
             if (LstKeys.SelectedItem == null)
             {
                 Logger.Inst.MakeWarning("You must select the key!");
@@ -162,6 +167,11 @@ namespace SK2_Translator
         {
             Logger.Inst.PrintInfo("Resetting keys.");
             _fromCode = true;
+            if (LstFiles.Items.Count <= 0)
+            {
+                LstKeys.Items.Clear();
+                return;
+            }
             var file = FileController.GetLFile(LstFiles.SelectedItem) ?? FileController.Localization.Original;
             _currentKey = LstKeys.SelectedItem?.ToString();
             LstKeys.Items.Clear();
@@ -170,7 +180,7 @@ namespace SK2_Translator
                 LstKeys.SelectedIndex = 0;
             if (_currentKey!=null)
             {
-                Logger.Inst.PrintInfo($"Trying to restore selected key...");
+                Logger.Inst.PrintInfo("Trying to restore selected key...");
                 _fromCode = true;
                 var index = LstKeys.FindStringExact(_currentKey);
                 if (index != ListBox.NoMatches)
@@ -222,7 +232,7 @@ namespace SK2_Translator
         }
         private void MsQuit_Click(object sender, EventArgs e)
         {
-            Logger.Inst.PrintInfo($"Quitting...");
+            Logger.Inst.PrintInfo("Quitting...");
             if (!Logger.Inst.CheckResponse("Do you want to quit?")) return;
             SaveChanged();
             Application.Exit();
@@ -262,7 +272,8 @@ namespace SK2_Translator
                 }
             }
             ResetLists(true);
-            BtnLoad_Click();
+            if(LstFiles.Items.Count > 0)
+                BtnLoad_Click();
         }
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
@@ -276,6 +287,16 @@ namespace SK2_Translator
                     return true;
                 case Keys.Alt | Keys.C:
                     BtnCls_Click();
+                    return true;
+                case Keys.Alt | Keys.Up:
+                    LstKeys.Focus();
+                    LstKeys.Select();
+                    LstKeys.SelectedIndex--;
+                    return true;
+                case Keys.Alt | Keys.Down:
+                    LstKeys.Focus();
+                    LstKeys.Select();
+                    LstKeys.SelectedIndex++;
                     return true;
             }
             return base.ProcessCmdKey(ref msg, keyData);
@@ -345,5 +366,6 @@ namespace SK2_Translator
             FileController.SortFileKeys(LstFiles.SelectedItem);
             ResetKeys();
         }
+
     }
 }
