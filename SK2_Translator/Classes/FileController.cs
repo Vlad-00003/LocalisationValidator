@@ -74,8 +74,26 @@ namespace SK2_Translator.Classes
             }
         }
 
-        private void CheckFile(LocalizationFile file)
+        public bool CheckFile(LocalizationFile file)
         {
+            if (file.Entries == null)
+            {
+                if (Logger.Inst.CheckResponse(
+                    "File \"{0}\" has no keys. Probably the file is broken. Do you want to empty the file?",
+                    file.Filename))
+                {
+                    file.Entries = new Dictionary<string, string>();
+                    if (!Logger.Inst.CheckResponse(
+                        "Do you want to fill the file with english values? (NO - all the keys would be added, but the values would be empty")
+                    )
+                    {
+                        file.Entries.AddKeys(Localization.Original.Entries, Logger.Inst);
+                        return true;
+                    }
+                }
+                else
+                    return false;
+            }
             Logger.Inst.PrintWarning("Filling file \"{0}\"", file.Filename);
             if (file.Entries.FillKeys(Localization.Original.Entries, Logger.Inst))
                 Logger.Inst.PrintInfo("File has all the lines!");
@@ -83,6 +101,7 @@ namespace SK2_Translator.Classes
             Logger.Inst.PrintWarning("File \"{0}\" sorted! Saving..", file.Filename);
             file.Save();
             Logger.Inst.PrintWarning("File \"{0}\" Saved!", file.Filename);
+            return true;
         }
 
         public List<LocalizationFile> GetFiles(string mask = "Original localisation file|Language_English.txt|Text Files|*.txt|All Files (*.*)|*.*")

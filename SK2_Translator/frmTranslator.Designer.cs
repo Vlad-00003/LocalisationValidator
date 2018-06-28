@@ -95,7 +95,7 @@
             this.InfoToolStripMenuItem});
             this.MenuStrip.Location = new System.Drawing.Point(0, 0);
             this.MenuStrip.Name = "MenuStrip";
-            this.MenuStrip.Size = new System.Drawing.Size(951, 24);
+            this.MenuStrip.Size = new System.Drawing.Size(960, 24);
             this.MenuStrip.TabIndex = 4;
             this.MenuStrip.Text = "MenuStrip";
             // 
@@ -276,7 +276,7 @@
             // 
             this.BtnCls.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnCls.Location = new System.Drawing.Point(846, 43);
+            this.BtnCls.Location = new System.Drawing.Point(855, 43);
             this.BtnCls.Name = "BtnCls";
             this.BtnCls.Size = new System.Drawing.Size(75, 63);
             this.BtnCls.TabIndex = 7;
@@ -296,7 +296,7 @@
             this.TxtConsole.Location = new System.Drawing.Point(6, 19);
             this.TxtConsole.Name = "TxtConsole";
             this.TxtConsole.ReadOnly = true;
-            this.TxtConsole.Size = new System.Drawing.Size(834, 111);
+            this.TxtConsole.Size = new System.Drawing.Size(843, 111);
             this.TxtConsole.TabIndex = 8;
             this.TxtConsole.Text = "";
             // 
@@ -308,7 +308,7 @@
             this.TxtNew.Font = new System.Drawing.Font("Lucida Console", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.TxtNew.Location = new System.Drawing.Point(75, 161);
             this.TxtNew.Name = "TxtNew";
-            this.TxtNew.Size = new System.Drawing.Size(544, 152);
+            this.TxtNew.Size = new System.Drawing.Size(488, 152);
             this.TxtNew.TabIndex = 9;
             this.TxtNew.Text = "Your translated text goes here";
             this.TxtNew.TextChanged += new System.EventHandler(this.TxtNew_TextChanged);
@@ -322,7 +322,7 @@
             this.TxtOrig.Location = new System.Drawing.Point(75, 3);
             this.TxtOrig.Name = "TxtOrig";
             this.TxtOrig.ReadOnly = true;
-            this.TxtOrig.Size = new System.Drawing.Size(544, 152);
+            this.TxtOrig.Size = new System.Drawing.Size(488, 152);
             this.TxtOrig.TabIndex = 10;
             this.TxtOrig.Text = "Here goes the original text";
             // 
@@ -335,9 +335,9 @@
             this.LstKeys.Items.AddRange(new object[] {
             "Kek",
             "Крф"});
-            this.LstKeys.Location = new System.Drawing.Point(192, 70);
+            this.LstKeys.Location = new System.Drawing.Point(199, 70);
             this.LstKeys.Name = "LstKeys";
-            this.LstKeys.Size = new System.Drawing.Size(124, 290);
+            this.LstKeys.Size = new System.Drawing.Size(174, 290);
             this.LstKeys.TabIndex = 3;
             this.LstKeys.SelectedIndexChanged += new System.EventHandler(this.LstKeys_SelectedIndexChanged);
             // 
@@ -366,7 +366,7 @@
             // LstFiles
             // 
             this.LstFiles.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.LstFiles.ContextMenuStrip = this.MsFilesContext;
             this.LstFiles.FormattingEnabled = true;
             this.LstFiles.Location = new System.Drawing.Point(12, 44);
@@ -417,12 +417,12 @@
             this.TableLayoutPanel1.Controls.Add(this.BtnConfirm, 0, 1);
             this.TableLayoutPanel1.Controls.Add(this.BtnLoad, 0, 0);
             this.TableLayoutPanel1.Controls.Add(this.TxtNew, 1, 1);
-            this.TableLayoutPanel1.Location = new System.Drawing.Point(322, 41);
+            this.TableLayoutPanel1.Location = new System.Drawing.Point(386, 41);
             this.TableLayoutPanel1.Name = "TableLayoutPanel1";
             this.TableLayoutPanel1.RowCount = 2;
             this.TableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.TableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.TableLayoutPanel1.Size = new System.Drawing.Size(622, 316);
+            this.TableLayoutPanel1.Size = new System.Drawing.Size(566, 316);
             this.TableLayoutPanel1.TabIndex = 13;
             // 
             // Label5
@@ -437,7 +437,7 @@
             // Label4
             // 
             this.Label4.AutoSize = true;
-            this.Label4.Location = new System.Drawing.Point(206, 25);
+            this.Label4.Location = new System.Drawing.Point(244, 25);
             this.Label4.Name = "Label4";
             this.Label4.Size = new System.Drawing.Size(84, 13);
             this.Label4.TabIndex = 12;
@@ -451,21 +451,23 @@
             this.GroupBox1.Controls.Add(this.TxtConsole);
             this.GroupBox1.Location = new System.Drawing.Point(12, 388);
             this.GroupBox1.Name = "GroupBox1";
-            this.GroupBox1.Size = new System.Drawing.Size(927, 142);
+            this.GroupBox1.Size = new System.Drawing.Size(936, 142);
             this.GroupBox1.TabIndex = 14;
             this.GroupBox1.TabStop = false;
             this.GroupBox1.Text = "Output";
             // 
             // TxtKeysSearch
             // 
-            this.TxtKeysSearch.Location = new System.Drawing.Point(193, 44);
+            this.TxtKeysSearch.Location = new System.Drawing.Point(199, 44);
             this.TxtKeysSearch.Name = "TxtKeysSearch";
-            this.TxtKeysSearch.Size = new System.Drawing.Size(123, 20);
+            this.TxtKeysSearch.Size = new System.Drawing.Size(174, 20);
             this.TxtKeysSearch.TabIndex = 15;
             this.TxtKeysSearch.TextChanged += new System.EventHandler(this.TxtKeysSearch_TextChanged);
             // 
             // label1
             // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(109, 372);
             this.label1.Name = "label1";
@@ -477,7 +479,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(951, 559);
+            this.ClientSize = new System.Drawing.Size(960, 559);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.TxtKeysSearch);
             this.Controls.Add(this.GroupBox1);

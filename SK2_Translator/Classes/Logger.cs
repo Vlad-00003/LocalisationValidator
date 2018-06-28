@@ -73,9 +73,9 @@ namespace SK2_Translator.Classes
             Program.Console.Clear();
         }
 
-        public bool CheckResponse(string text)
+        public bool CheckResponse(string text, params object[] args)
         {
-            return MessageBox.Show(text,"",MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes;
+            return MessageBox.Show(FormatString(text,args), "",MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes;
         }
     }
 }

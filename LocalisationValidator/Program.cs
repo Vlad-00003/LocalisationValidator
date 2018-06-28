@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using Share;
 using static Share.Utilities;
 
@@ -31,7 +32,7 @@ namespace LocalisationValidator
 
             if (InitInput(path))
             {
-                foreach (var file in _loc.Available)
+                foreach (var file in _loc.Available.Where(p => p != null))
                 {
                     Logger.Inst.PrintWarning("Filling file \"{0}\"", file.Filename);
                     if (file.Entries.FillKeys(_loc.Original.Entries, Logger.Inst))

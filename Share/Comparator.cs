@@ -24,6 +24,16 @@ namespace Share
             {
                 return true;
             }
+            if (target == null)
+            {
+                logger.PrintError("Can't fill file as it is NULL!");
+                return false;
+            }
+            if (orig == null)
+            {
+                logger.PrintError("Can't fill file as the original file is NULL!");
+                return false;
+            }
             var diff = orig.Keys.Except(target.Keys).ToList();
             foreach (var key in diff)
             {
@@ -33,8 +43,35 @@ namespace Share
             return false;
         }
 
+        public static void AddKeys(this Dictionary<string, string> target, Dictionary<string, string> orig,
+            ILogger logger)
+        {
+            if (orig == null)
+            {
+                logger.PrintError("Can't fill file as the original file is NULL!");
+                return;
+            }
+            if(target == null)
+                target=new Dictionary<string, string>();
+            var keys = orig.Keys.ToList();
+            foreach (var key in keys)
+            {
+                target.Add(key,null);
+            }
+
+        }
         public static void SortDict(this Dictionary<string, string> target, Dictionary<string, string> orig, ILogger logger)
         {
+            if (target == null)
+            {
+                logger.PrintError("Can't sort file as it is NULL!");
+                return;
+            }
+            if (orig == null)
+            {
+                logger.PrintError("Can't sort file as the original file is NULL!");
+                return;
+            }
             var bckp = new Dictionary<string,string>(target);
             target.Clear();
             foreach (var pair in orig)

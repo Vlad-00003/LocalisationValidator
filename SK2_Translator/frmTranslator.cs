@@ -70,7 +70,7 @@ namespace SK2_Translator
                 Logger.Inst.PrintInfo("File changed.");
                 ResetLists();
             }
-            if (_currentKey != LstKeys.SelectedItem.ToString())
+            if (_currentKey != LstKeys.SelectedItem?.ToString())
             {
                 Logger.Inst.PrintInfo("Key changed.");
                 ResetKeys();
@@ -91,6 +91,7 @@ namespace SK2_Translator
             Logger.Inst.PrintInfo($"Setting line \"{key}\" to \"{text}\" in the file \"{file}\"");
             FileController.Inst.SetFileLine(file, key, text);
             _unsavedText = false;
+            AddToUnsaved(LstFiles.SelectedItem);
         }
 
         private void AddToUnsaved(object filename)
@@ -175,6 +176,7 @@ namespace SK2_Translator
             var file = FileController.GetLFile(LstFiles.SelectedItem) ?? FileController.Localization.Original;
             _currentKey = LstKeys.SelectedItem?.ToString();
             LstKeys.Items.Clear();
+            if (file.Entries != null)
             LstKeys.Items.AddRange(file.Entries.Keys.Select(p => p as object).ToArray());
             if (init && LstKeys.Items.Count > 0 && LstKeys.SelectedIndex == -1)
                 LstKeys.SelectedIndex = 0;
@@ -327,6 +329,7 @@ namespace SK2_Translator
             file?.Entries.Remove(LstKeys.SelectedItem.ToString());
             Logger.Inst.PrintInfo("Key removed.");
             ResetKeys();
+            AddToUnsaved(LstFiles.SelectedItem);
         }
 
         private void AddKeyToolStripMenuItem_Click(object sender, EventArgs e)
@@ -338,6 +341,10 @@ namespace SK2_Translator
             if (string.IsNullOrEmpty(newKey))
             {
                 Logger.Inst.MakeError("Key can't be empty!.", _currentFile, _currentKey);
+                return;
+            }
+            if (file.Entries == null && !FileController.Inst.CheckFile(file))
+            {
                 return;
             }
             if (file.Entries.ContainsKey(newKey))

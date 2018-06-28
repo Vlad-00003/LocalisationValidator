@@ -7,12 +7,12 @@ namespace LocalisationValidator
     {
         public static readonly Logger Inst = new Logger();
 
-        public bool CheckResponse(string text)
+        public bool CheckResponse(string text,params object[] args)
         {
             ConsoleKey response;
             do
             {
-                PrintInfo(text + " [y/n] ");
+                PrintInfo(FormatString(text,args) + " [y/n] ");
                 response = Console.ReadKey(false).Key;
                 if (response != ConsoleKey.Enter)
                     Console.WriteLine();

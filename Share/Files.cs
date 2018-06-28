@@ -116,10 +116,12 @@ namespace Share
             }
             catch (Exception ex)
             {
-                _logger.PrintError(ex.Message);
-                if (_logger.CheckResponse("Do you want to override this file with english lines?"))
+                _logger.PrintError(ex.FriendlyException());
+                if (!_logger.CheckResponse(
+                    "File \"{0}\" seems broken (probably missing, unescaped or wrong placed comma or \")\nDo you want to override the file with english lines?",
+                    Filename))
                 {
-                    Entries = new Dictionary<string, string>();
+                    Entries = null;
                 }
             }
         }
@@ -132,6 +134,16 @@ namespace Share
             }
             catch (Exception e)
             {
+                if (e is ArgumentException)
+                {
+                    var duplicates = _text.keys.GroupBy(x => x)
+                        .Where(group => group.Count() > 1)
+                        .Select(group => group.Key);
+                    foreach (var duplicate in duplicates)
+                    {
+                        _logger.PrintError("Dubplcate key \"{0}\" in the file \"{1}!\"\nValue: {2}", duplicate, Filename, _text[duplicate]);
+                    }
+                }
                 throw GenerateException("Can't load language \"{0}\"", e, Filename);
             }
         }
@@ -148,6 +160,8 @@ namespace Share
 
         public bool Save()
         {
+            if (Entries == null)
+                return false;
             _text = new JSONObject(Entries);
             return Write(Fullpath);
         }

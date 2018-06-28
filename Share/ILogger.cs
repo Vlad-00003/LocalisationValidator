@@ -9,6 +9,6 @@ namespace Share
         void PrintInfo(string format, params object[] args);
         void PrintError(string format, params object[] args);
         void Print(string format, params object[] args);
-        bool CheckResponse(string text);
+        bool CheckResponse(string text, params object[] args);
     }
 }
